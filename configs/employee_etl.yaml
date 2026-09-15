@@ -1,0 +1,15 @@
+source:
+  file: data/employees.csv
+
+transformations:
+
+  - type: filter
+    condition: salary > 50000
+
+  - type: select
+    columns:
+      - id
+      - name
+
+target:
+  file: output/employee_filtered
