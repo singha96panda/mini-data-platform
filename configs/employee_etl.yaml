@@ -12,4 +12,10 @@ transformations:
       - name
 
 target:
-  file: output/employee_filtered
+  type: postgres
+  host: localhost
+  port: 5432
+  database: postgres
+  table: employee_filtered
+  user: postgres
+  password: "1234"
