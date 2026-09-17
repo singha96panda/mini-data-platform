@@ -1,17 +1,16 @@
 pipeline {
     agent any
 
+    environment {
+        PYSPARK_PYTHON = 'python'
+        PYSPARK_DRIVER_PYTHON = 'python'
+    }
+
     stages {
 
         stage('Install Dependencies') {
             steps {
                 bat 'python -m pip install -r requirements.txt'
-            }
-        }
-
-        stage('Show Files') {
-            steps {
-                bat 'dir tests'
             }
         }
 
