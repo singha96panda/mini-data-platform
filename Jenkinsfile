@@ -9,6 +9,12 @@ pipeline {
             }
         }
 
+        stage('Show Files') {
+            steps {
+                bat 'dir tests'
+            }
+        }
+
         stage('Run Tests') {
             steps {
                 bat 'python -m pytest -v'
