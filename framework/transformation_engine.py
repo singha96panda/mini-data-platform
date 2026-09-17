@@ -1,4 +1,12 @@
-from pyspark.sql.functions import expr
+from pyspark.sql.functions import (
+    expr,
+    sum,
+    avg,
+    count,
+    max,
+    min
+)
+
 
 def apply_transformations(df, transformations):
 
@@ -36,40 +44,40 @@ def apply_transformations(df, transformations):
 
         elif transformation["type"] == "aggregate":
 
-    group_cols = transformation["group_by"]
+            group_cols = transformation["group_by"]
 
-    agg_exprs = []
+            agg_exprs = []
 
-    for agg in transformation["aggregations"]:
+            for agg in transformation["aggregations"]:
 
-        col_name = agg["column"]
-        func_name = agg["function"]
-        alias = agg["alias"]
+                col_name = agg["column"]
+                func_name = agg["function"]
+                alias = agg["alias"]
 
-        if func_name == "sum":
-            agg_exprs.append(
-                sum(col_name).alias(alias)
-            )
+                if func_name == "sum":
+                    agg_exprs.append(
+                        sum(col_name).alias(alias)
+                    )
 
-        elif func_name == "avg":
-            agg_exprs.append(
-                avg(col_name).alias(alias)
-            )
+                elif func_name == "avg":
+                    agg_exprs.append(
+                        avg(col_name).alias(alias)
+                    )
 
-        elif func_name == "count":
-            agg_exprs.append(
-                count(col_name).alias(alias)
-            )
+                elif func_name == "count":
+                    agg_exprs.append(
+                        count(col_name).alias(alias)
+                    )
 
-        elif func_name == "max":
-            agg_exprs.append(
-                max(col_name).alias(alias)
-            )
+                elif func_name == "max":
+                    agg_exprs.append(
+                        max(col_name).alias(alias)
+                    )
 
-        elif func_name == "min":
-            agg_exprs.append(
-                min(col_name).alias(alias)
-            )
+                elif func_name == "min":
+                    agg_exprs.append(
+                        min(col_name).alias(alias)
+                    )
 
             df = df.groupBy(*group_cols).agg(*agg_exprs)
 
