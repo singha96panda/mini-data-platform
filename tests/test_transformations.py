@@ -8,6 +8,45 @@ spark = (
     .getOrCreate()
 )
 
+def test_join():
+
+    employee_data = [
+        (1, "John", 10),
+        (2, "Mary", 20)
+    ]
+
+    department_data = [
+        (10, "Finance"),
+        (20, "HR")
+    ]
+
+    employee_df = spark.createDataFrame(
+        employee_data,
+        ["id", "name", "dept_id"]
+    )
+
+    department_df = spark.createDataFrame(
+        department_data,
+        ["dept_id", "department"]
+    )
+
+    transformations = [
+        {
+            "type": "join",
+            "right_df": department_df,
+            "join_key": "dept_id",
+            "join_type": "left"
+        }
+    ]
+
+    result = apply_transformations(
+        employee_df,
+        transformations
+    )
+
+    assert result.count() == 2
+    assert "department" in result.columns
+
 def test_filter():
 
     data = [
