@@ -1,0 +1,20 @@
+source:
+  file: data/customers.csv
+
+transformations:
+
+  - type: filter
+    condition: city = 'Bangalore'
+
+  - type: rename
+    old_name: customer_id
+    new_name: Banchod
+
+target:
+  type: postgres
+  host: localhost
+  port: 5432
+  database: postgres
+  table: customer_filtered
+  user: postgres
+  password: "1234"

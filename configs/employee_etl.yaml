@@ -10,6 +10,11 @@ transformations:
     columns:
       - id
       - name
+      - salary
+
+  - type: derive
+    column: salary_band
+    expression: "CASE WHEN salary > 70000 THEN 'HIGH' ELSE 'LOW' END"
 
 target:
   type: postgres
