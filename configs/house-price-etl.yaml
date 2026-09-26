@@ -1,0 +1,27 @@
+source:
+  file: data/House Price Prediction Dataset.csv
+
+transformations:
+
+  - type: filter
+    condition: Condition == 'Excellent'
+
+  - type: filter
+    condition: Garage == 'Yes'
+
+
+  - type: select
+    columns:
+      - Id
+      - Condition
+      - Garage
+      - Price
+
+target:
+  type: postgres
+  host: localhost
+  port: 5432
+  database: postgres
+  table: Housing_Price_filtered
+  user: postgres
+  password: "1234"

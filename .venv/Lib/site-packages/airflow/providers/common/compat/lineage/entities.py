@@ -61,7 +61,7 @@ class Column:
     name: str = attr.ib()
     description: str | None = None
     data_type: str = attr.ib()
-    tags: list[Tag] = attr.Factory(list)
+    tags: list[Tag] = []
 
     template_fields: ClassVar = ("name", "description", "data_type", "tags")
 
@@ -83,11 +83,11 @@ class Table:
     database: str = attr.ib()
     cluster: str = attr.ib()
     name: str = attr.ib()
-    tags: list[Tag] = attr.Factory(list)
+    tags: list[Tag] = []
     description: str | None = None
-    columns: list[Column] = attr.Factory(list)
-    owners: list[User] = attr.Factory(list)
-    extra: dict[str, Any] = attr.Factory(dict)
+    columns: list[Column] = []
+    owners: list[User] = []
+    extra: dict[str, Any] = {}
     type_hint: str | None = None
 
     template_fields: ClassVar = (
