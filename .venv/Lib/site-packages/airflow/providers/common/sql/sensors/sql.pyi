@@ -38,7 +38,7 @@ from typing import Any
 from _typeshed import Incomplete as Incomplete
 
 from airflow.providers.common.compat.sdk import BaseSensorOperator
-from airflow.sdk import Context
+from airflow.utils.context import Context as Context
 
 class SqlSensor(BaseSensorOperator):
     template_fields: Sequence[str]

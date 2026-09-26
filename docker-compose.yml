@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+
+  spark-etl:
+    image: mini-data-platform
+    container_name: spark_etl
+    depends_on:
+      - postgres
